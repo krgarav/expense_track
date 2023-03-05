@@ -1,6 +1,7 @@
+import React from "react";
 import "./ExpenseItems.css";
 
-function ExpenseDetails(props) {
+const ExpenseDetails=(props)=>{
   const title = props.title;
   const amount = props.amount;
 
