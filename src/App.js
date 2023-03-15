@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Expense from "./components/Expenses/Expense";
 import NewExpense from "./components/New_Expenses/NewExpenses";
+import expenses from "./components/Expenses/Expenses";
 
-const App = () => {
+const App = (props) => {
+  const [newItem, setNewItem] = useState("");
+
+  const addExpenseHandler = (expense) => {
+    setNewItem(expense);
+  };
+
   return (
     <div>
-      <NewExpense/>
-      <Expense />
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expense item={newItem} />
     </div>
   );
 };

@@ -7,6 +7,7 @@ import Card from "../UI/Card";
 const ExpenseItems = (props) => {
   const [title, setTitle] = useState(props.title);
   const [expense, setExpense] = useState(props.amount);
+
   const deleteHandler = (event) => {
     event.target.parentNode.style.display = "none";
   };
