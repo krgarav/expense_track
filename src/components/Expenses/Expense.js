@@ -4,7 +4,7 @@ import "./Expense.css";
 import ExpensesFilter from "./ExpenseFilter";
 
 const Expenses = (props) => {
-  const [filteredYear, setFilteredYear] = useState("2023");
+  const [filteredYear, setFilteredYear] = useState("2022");
 
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
@@ -13,13 +13,17 @@ const Expenses = (props) => {
   const filteredExpenses = props.item.filter((expense)=>{
     return expense.date.getFullYear().toString() === filteredYear;
   })
+
+
   return (
     <div className="expenses">
       <ExpensesFilter
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
       />
-      {filteredExpenses.map((expenseData) => {
+      {filteredExpenses.length==1&&<p style={{color:'white', textAlign:'center'}}>Only single Expense here. Please add more...</p>}
+      {filteredExpenses.length==0?<p style={{color:'white', textAlign:'center'}}>There is no item</p>:
+      filteredExpenses.map((expenseData) => {
         return (
           <ExpenseItems
             key={expenseData.id}
@@ -28,7 +32,8 @@ const Expenses = (props) => {
             date={expenseData.date}
           />
         );
-      })}
+      })
+      }
     </div>
   );
 };
